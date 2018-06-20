@@ -1,0 +1,39 @@
+.BoardCardDetailBody {
+  display: flex;
+  justify-content: space-between;
+
+  &__left {
+
+  }
+
+  &__right {
+    width: 50px;
+  }
+}
+
+.BoardCardDetailBody {
+
+  &-title-area {
+    & .ant-checkbox-wrapper {
+      font-size: 20px;
+      & .ant-checkbox {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &-title {
+    font-size: 20px;
+    &.is-done {
+      color: #ababab;
+      text-decoration:line-through;
+    }
+  }
+
+  &-tag-group {
+    margin: 5px 5px 5px 25px;
+    & .ant-tag {
+      margin-bottom: 5px;
+    }
+  }
+}

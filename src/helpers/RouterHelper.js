@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
 import { HashRouter as Router } from 'react-router-dom'
-import routerConfig from './routerConfig'
 
 function recursiveRouterConfigV4(config = []) {
   const routeMap = []
@@ -35,7 +34,6 @@ function renderRouterConfigV4(container, router, contextPath) {
 
     let exact = routeItem.exact !== undefined ? routeItem.exact : true
 
-    // 优先使用当前定义的 layout
     if (routeItem.layout && routeItem.component) {
       routeChildren.push(
         <Route
@@ -52,7 +50,6 @@ function renderRouterConfigV4(container, router, contextPath) {
         />
       )
     } else if (routeContainer && routeItem.component) {
-      // 使用上层节点作为 container
       routeChildren.push(
         <Route
           key={routePath}
@@ -78,10 +75,8 @@ function renderRouterConfigV4(container, router, contextPath) {
       )
     }
 
-    // 存在子路由，递归当前路径，并添加到路由中
     if (Array.isArray(routeItem.childRoutes)) {
       routeItem.childRoutes.forEach((r) => {
-        // 递归传递当前 route.component 作为子节点的 container
         renderRoute(routeItem.component, r, routePath)
       })
     }
@@ -94,7 +89,20 @@ function renderRouterConfigV4(container, router, contextPath) {
   return <Switch>{routeChildren}</Switch>
 }
 
-const routerWithReactRouter4 = recursiveRouterConfigV4(routerConfig)
-const routerChildren = renderRouterConfigV4(null, routerWithReactRouter4, '/')
+function formateRouter (routerConfig) {
+  return renderRouterConfigV4(null, recursiveRouterConfigV4(routerConfig), '/')
+}
 
-export default <Router>{ routerChildren }</Router>
+const RootRouter = (routerConfig) => {
+  return (
+    <Router>{ formateRouter(routerConfig) }</Router>
+  )
+}
+
+const ChildRouter = (routerConfig) => {
+  return (
+    formateRouter(routerConfig)
+  )
+}
+
+export { RootRouter, ChildRouter }

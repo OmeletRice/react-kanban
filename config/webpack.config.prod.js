@@ -94,6 +94,11 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+
+      'src': path.resolve(__dirname, '../src/'),
+      '@': path.resolve(__dirname, '../src/'),
+      'components': path.resolve(__dirname, '../src/components/'),
+      'layout': path.resolve(__dirname, '../src/layout')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -166,7 +171,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -182,6 +187,7 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
+                        // modules: true,
                         sourceMap: shouldUseSourceMap,
                       },
                     },
@@ -205,6 +211,9 @@ module.exports = {
                         ],
                       },
                     },
+                    {
+                      loader: require.resolve('less-loader')
+                    }
                   ],
                 },
                 extractTextPluginOptions

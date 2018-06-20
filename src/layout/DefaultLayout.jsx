@@ -1,8 +1,10 @@
 import React from 'react'
+import GlobalHeader from 'components/GlobalHeader'
 
-const Default = (props) => {
+const DefaultLayout = (props) => {
   return (
     <div className="default-layout">
+      <GlobalHeader />
       <main className="body-wrapper">
         { props.children }
       </main>
@@ -10,4 +12,4 @@ const Default = (props) => {
   )
 }
 
-export default Default
+export default DefaultLayout

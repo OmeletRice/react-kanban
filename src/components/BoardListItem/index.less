@@ -1,0 +1,61 @@
+.BoardListItem {
+  min-width: 270px;
+  margin: 0 5px;
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+
+  &.sortable-ghost {
+    transform: rotateZ(1deg);
+    opacity: .5;
+  }
+}
+
+.BoardListItem__wrap {
+  background-color: #ccc;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.BoardListItem__header {
+  display: flex;
+
+  &-swap {
+    font-size: 15px;
+    width: 20px;
+    cursor: move;
+  }
+
+  &-title {
+    width: 100%;
+    text-align: left;
+    padding: 0 5px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-menu {
+    font-size: 15px;
+    cursor: pointer;
+
+    & .mo-icon {
+      transition-duration: .3s;
+      padding: 3px;
+      border-radius: 3px;
+
+      &:hover {
+        color: #ffffff;
+        background-color: #636363;
+      }
+    }
+
+    
+  }
+}
+
+.BoardListItem__content {
+
+}

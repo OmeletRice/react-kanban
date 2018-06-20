@@ -1,0 +1,37 @@
+.BoardItem {
+}
+
+.BoardItem__wrap {
+  padding: 5px;
+}
+
+.BoardItem__content {
+  width: 100%;
+  min-height: 100px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  transition-duration: .3s;
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);   
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.13);
+  }
+}
+
+.BoardItem__content {
+  
+  &-title {
+    line-height: 15px;
+    text-decoration: none;
+    color: #000;
+  }
+  &-description {
+    font-size: 14px;
+    text-decoration: none;
+    color: rgb(59, 59, 59);
+  }
+}

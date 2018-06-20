@@ -1,23 +1,25 @@
 
-import DefaultLayout from '../layout/Default'
-import Dashboard from '../pages/Dashboard'
+// import DefaultLayout from 'layout/DefaultLayout'
+// import Dashboard from '../pages/Dashboard'
+// import BoardPanel from '../pages/BoardPanel'
+// import BoardCardDetail from 'components/BoardCardDetail'
 
-const routerConfig = [
+import AppBoardWrapper from 'pages/AppBoardWrapper'
+
+const navRouter = [
   {
-    path: '/',
-    component: DefaultLayout,
-    children: [
-      {
-        path: '/dashboard',
-        component: Dashboard
-      }
-    ]
+    path: '/'
   },
-
   {
-    path: '*',
-    component: null
+    path: '/auth',
+  },
+  {
+    path: '/app',
+    exact: false,
+    component: AppBoardWrapper
   }
 ]
+
+const routerConfig = navRouter
 
 export default routerConfig

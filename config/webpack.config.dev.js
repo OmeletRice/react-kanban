@@ -91,7 +91,11 @@ module.exports = {
 
       'src': path.resolve(__dirname, '../src/'),
       '@': path.resolve(__dirname, '../src/'),
-      'components': path.resolve(__dirname, '../src/components/')
+      'utils': path.resolve(__dirname, '../src/utils/'),
+      'components': path.resolve(__dirname, '../src/components/'),
+      'layout': path.resolve(__dirname, '../src/layout/'),
+      'pages': path.resolve(__dirname, '../src/pages'),
+      'helpers': path.resolve(__dirname, '../src/helpers')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -168,6 +172,42 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  // modules: true,
+                  // localIdentName: '[name]__[local]___[hash:base64:5]'  
+                },
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              }
+            ],
+          },
+          {
+            test: /\.less$/,
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                  // modules: true,
+                  // localIdentName: '[name]__[local]___[hash:base64:5]'  
                 },
               },
               {
@@ -190,6 +230,12 @@ module.exports = {
                   ],
                 },
               },
+              {
+                loader: require.resolve('less-loader'),
+                options: {
+                  sourcemap: true
+                }
+              }
             ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
